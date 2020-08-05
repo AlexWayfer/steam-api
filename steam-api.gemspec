@@ -24,5 +24,5 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'faraday', '~> 0.9'
   gem.add_dependency 'multi_json', '~> 1.7', '>= 1.7.7'
-  gem.add_dependency 'json', '~> 1.7', '>= 1.7.7'
+  gem.add_dependency 'json', '~> 2.3', '>= 1.7.7'
 end
