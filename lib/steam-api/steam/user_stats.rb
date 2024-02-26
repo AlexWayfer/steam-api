@@ -12,8 +12,8 @@ module Steam
       #   overview of a specific game in percentages.
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetGlobalAchievementPercentagesForApp
       def achievement_percentages(appid)
-        response = client.get 'GetGlobalAchievementPercentagesForApp/v2', params: { gameid: appid }
-        response.parse_key('achievementpercentages').parse_key('achievements')
+        response = client.get "GetGlobalAchievementPercentagesForApp/v2", params: {gameid: appid}
+        response.parse_key("achievementpercentages").parse_key("achievements")
       end
 
       # Get Global Stats for Game
@@ -32,8 +32,8 @@ module Steam
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetGlobalStatsForGame
       def global_for_game(appid, params: {})
         params[:appid] = appid
-        response = client.get 'GetGlobalStatsForGame/v1', params: params
-        response.parse_key('response')
+        response = client.get "GetGlobalStatsForGame/v1", params: params
+        response.parse_key("response")
       end
 
       # Get stat schema
@@ -42,10 +42,10 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetSchemaForGame
       def game_schema(appid, language: nil)
-        params = { appid: appid }
+        params = {appid: appid}
         params[:l] = language unless language.nil?
-        response = client.get 'GetSchemaForGame/v2', params: params
-        response.parse_key('game')
+        response = client.get "GetSchemaForGame/v2", params: params
+        response.parse_key("game")
       end
 
       # Get Number of Current Players
@@ -53,8 +53,8 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetNumberOfCurrentPlayers
       def player_count(appid)
-        response = client.get 'GetNumberOfCurrentPlayers/v1', params: { appid: appid }
-        response.parse_key('response').parse_key('player_count')
+        response = client.get "GetNumberOfCurrentPlayers/v1", params: {appid: appid}
+        response.parse_key("response").parse_key("player_count")
       end
 
       # Get Player Achievements
@@ -65,12 +65,12 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetPlayerAchievements
       def player_achievements(appid, steamid, language: nil)
-        params = { appid: appid, steamid: steamid }
+        params = {appid: appid, steamid: steamid}
         params[:l] = language unless language.nil?
-        response = client.get 'GetPlayerAchievements/v1', params: params
-        response = response.parse_key('playerstats')
+        response = client.get "GetPlayerAchievements/v1", params: params
+        response = response.parse_key("playerstats")
         response.check_success
-        response.delete('success')
+        response.delete("success")
         response
       end
 
@@ -80,12 +80,12 @@ module Steam
       # @return [Hash] A hash containing the API response.
       # @see https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29
       def player_stats(appid, steamid)
-        response = client.get 'GetUserStatsForGame/v2', params: { appid: appid, steamid: steamid }
-        response.parse_key('playerstats')
+        response = client.get "GetUserStatsForGame/v2", params: {appid: appid, steamid: steamid}
+        response.parse_key("playerstats")
       end
 
       def client
-        Steam::Client.new 'ISteamUserStats'
+        Steam::Client.new "ISteamUserStats"
       end
     end
   end

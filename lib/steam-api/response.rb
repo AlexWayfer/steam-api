@@ -30,7 +30,7 @@ module Steam
     # @param [String] success_condition what the success condition should be
     # @return [Boolean] Returns true or raises an exception.
     def check_success(success_condition: true)
-      success = parse_key('success')
+      success = parse_key("success")
       raise Steam::SteamError unless success == success_condition
 
       true

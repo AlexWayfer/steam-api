@@ -9,6 +9,6 @@
 class Hash
   def to_params(params = {})
     params[:format] = :json
-    "?#{params.each.map { |x| x.join('=') }.join('&')}"
+    "?#{params.each.map { |x| x.join("=") }.join("&")}"
   end
 end

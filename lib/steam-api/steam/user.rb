@@ -16,9 +16,9 @@ module Steam
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetFriendList
       def friends(steamid, relationship: :all)
         response = client.get(
-          'GetFriendList/v1/', params: { steamid: steamid, relationship: relationship }
+          "GetFriendList/v1/", params: {steamid: steamid, relationship: relationship}
         )
-        response.parse_key('friendslist').parse_key('friends')
+        response.parse_key("friendslist").parse_key("friends")
       end
 
       # Get Multiple Player Bans
@@ -27,7 +27,7 @@ module Steam
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetPlayerBans
       def bans(steamids)
         steamids = [steamids] unless steamids.is_a?(Array)
-        client.get 'GetPlayerBans/v1/', params: { steamids: steamids.join(',') }
+        client.get "GetPlayerBans/v1/", params: {steamids: steamids.join(",")}
       end
 
       # Get Player Summaries
@@ -49,8 +49,8 @@ module Steam
       #   only public data will be returned.
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetPlayerSummaries
       def summaries(steamids)
-        response = client.get 'GetPlayerSummaries/v2/', params: { steamids: steamids.join(',') }
-        response.parse_key('response').parse_key('players')
+        response = client.get "GetPlayerSummaries/v2/", params: {steamids: steamids.join(",")}
+        response.parse_key("response").parse_key("players")
       end
 
       # Get User Groups
@@ -58,10 +58,10 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetUserGroupList
       def groups(steamid)
-        response = client.get 'GetUserGroupList/v1', params: { steamid: steamid }
-        response = response.parse_key('response')
+        response = client.get "GetUserGroupList/v1", params: {steamid: steamid}
+        response = response.parse_key("response")
         response.check_success
-        response.parse_key('groups')
+        response.parse_key("groups")
       end
 
       # Resolve Vanity URL
@@ -70,14 +70,14 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/ResolveVanityURL
       def vanity_to_steamid(vanityurl)
-        response = client.get 'ResolveVanityURL/v1', params: { vanityurl: vanityurl }
-        response = response.parse_key('response')
+        response = client.get "ResolveVanityURL/v1", params: {vanityurl: vanityurl}
+        response = response.parse_key("response")
         response.check_success(success_condition: 1)
-        response.parse_key('steamid')
+        response.parse_key("steamid")
       end
 
       def client
-        Steam::Client.new 'ISteamUser'
+        Steam::Client.new "ISteamUser"
       end
     end
   end

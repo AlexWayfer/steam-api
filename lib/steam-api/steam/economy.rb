@@ -24,7 +24,7 @@ module Steam
       # @see http://wiki.teamfortress.com/wiki/WebAPI/UpToDateCheck
       def asset_info(appid, params: {})
         params[:appid] = appid
-        response = client.get 'GetAssetClassInfo/v1', params: params
+        response = client.get "GetAssetClassInfo/v1", params: params
         parse_response(response)
       end
 
@@ -41,21 +41,21 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetAssetPrices
       def asset_prices(appid, language: nil, currency: nil)
-        params = { appid: appid }
+        params = {appid: appid}
         params[:language] = language unless language.nil?
         params[:currency] = currency unless currency.nil?
-        response = client.get 'GetAssetPrices/v1', params: params
+        response = client.get "GetAssetPrices/v1", params: params
         parse_response(response)
       end
 
       def client
-        Steam::Client.new 'ISteamEconomy'
+        Steam::Client.new "ISteamEconomy"
       end
 
       def parse_response(response)
-        response = response.parse_key('result')
+        response = response.parse_key("result")
         response.check_success
-        response.delete('success')
+        response.delete("success")
         response
       end
     end

@@ -6,7 +6,7 @@ module Steam
     # @param [String] api The endpoint of the API
     # @param [String] base_url the root uri for steam's API
     # @return [Steam::Client] The Client
-    def initialize(api, base_url: 'https://api.steampowered.com')
+    def initialize(api, base_url: "https://api.steampowered.com")
       url = File.join(base_url, api)
       @conn = Faraday.new(url: url)
     end
@@ -25,9 +25,9 @@ module Steam
       # If the steam web api returns an error it's virtually never in json, so
       #   lets pretend that we're getting some sort of consistant response
       #   for errors.
-      raise Steam::UnavailableError if response.status == '503'
+      raise Steam::UnavailableError if response.status == "503"
 
-      Response.new error: '500 Internal Server Error'
+      Response.new error: "500 Internal Server Error"
     end
   end
 end

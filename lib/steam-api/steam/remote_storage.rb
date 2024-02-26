@@ -13,7 +13,7 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetPublishedFileDetails
       def published_file(params: {})
-        client.get 'GetPublishedFileDetails/v1', params: params
+        client.get "GetPublishedFileDetails/v1", params: params
       end
 
       # Get UGC File Details
@@ -26,11 +26,11 @@ module Steam
       # @return [Hash] A hash containing the API response
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetUGCFileDetails
       def ugc_file(params: {})
-        client.get 'GetUGCFileDetails/v1', params: params
+        client.get "GetUGCFileDetails/v1", params: params
       end
 
       def client
-        Steam::Client.new 'ISteamRemoteStorage'
+        Steam::Client.new "ISteamRemoteStorage"
       end
     end
   end

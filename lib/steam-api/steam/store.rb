@@ -10,13 +10,13 @@ module Steam
       # @param String appid The UUID of the Steam Application
       # @see https://wiki.teamfortress.com/wiki/User:RJackson/StorefrontAPI#appdetails
       def app_details(appid)
-        client.get 'appdetails', params: { appids: appid }
+        client.get "appdetails", params: {appids: appid}
       end
 
       private
 
       def client
-        Steam::Client.new '', base_url: 'https://store.steampowered.com/api'
+        Steam::Client.new "", base_url: "https://store.steampowered.com/api"
       end
     end
   end

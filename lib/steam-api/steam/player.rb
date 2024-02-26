@@ -22,8 +22,8 @@ module Steam
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetOwnedGames
       def owned_games(steamid, params: {})
         params[:steamid] = steamid
-        response = client.get 'GetOwnedGames/v1', params: params
-        response.parse_key('response')
+        response = client.get "GetOwnedGames/v1", params: params
+        response.parse_key("response")
       end
 
       # Get Recently Played Games
@@ -35,36 +35,36 @@ module Steam
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetRecentlyPlayedGames
       def recently_played_games(steamid, params: {})
         params[:steamid] = steamid
-        response = client.get 'GetRecentlyPlayedGames/v1', params: params
-        response.parse_key('response')
+        response = client.get "GetRecentlyPlayedGames/v1", params: params
+        response.parse_key("response")
       end
 
       # Get a player's Steam Level
       # @param [Fixnum] steamid The SteamID of the account.
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetSteamLevel
       def steam_level(steamid)
-        response = client.get 'GetSteamLevel/v1', params: { steamid: steamid }
-        response.parse_key('response').parse_key('player_level')
+        response = client.get "GetSteamLevel/v1", params: {steamid: steamid}
+        response.parse_key("response").parse_key("player_level")
       end
 
       # Get a player's Steam badges
       # @param [Fixnum] steamid The SteamID of the account.
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetBadges
       def badges(steamid)
-        response = client.get 'GetBadges/v1', params: { steamid: steamid }
-        response.parse_key('response')
+        response = client.get "GetBadges/v1", params: {steamid: steamid}
+        response.parse_key("response")
       end
 
       # Get a player's Steam Level
       # @param [Fixnum] steamid The SteamID of the account.
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetCommunityBadgeProgress
       def community_badge_progress(steamid)
-        response = client.get 'GetCommunityBadgeProgress/v1', params: { steamid: steamid }
-        response.parse_key('response').parse_key('quests')
+        response = client.get "GetCommunityBadgeProgress/v1", params: {steamid: steamid}
+        response.parse_key("response").parse_key("quests")
       end
 
       def client
-        Steam::Client.new 'IPlayerService'
+        Steam::Client.new "IPlayerService"
       end
     end
   end

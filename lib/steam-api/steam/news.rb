@@ -23,11 +23,11 @@ module Steam
       # @see http://wiki.teamfortress.com/wiki/WebAPI/GetNewsForApp
       def get(appid, params: {})
         params[:appid] = appid
-        client.get('GetNewsForApp/v2', params: params).parse_key('appnews').parse_key('newsitems')
+        client.get("GetNewsForApp/v2", params: params).parse_key("appnews").parse_key("newsitems")
       end
 
       def client
-        Steam::Client.new 'ISteamNews'
+        Steam::Client.new "ISteamNews"
       end
     end
   end

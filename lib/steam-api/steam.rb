@@ -8,9 +8,9 @@ module Steam
     def apikey
       return @apikey if @apikey
 
-      raise ArgumentError, 'Please set your Steam API key.' unless ENV.key?('STEAM_API_KEY')
+      raise ArgumentError, "Please set your Steam API key." unless ENV.key?("STEAM_API_KEY")
 
-      @apikey = ENV.fetch('STEAM_API_KEY')
+      @apikey = ENV.fetch("STEAM_API_KEY")
     end
   end
 end
